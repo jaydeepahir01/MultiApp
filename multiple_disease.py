@@ -100,6 +100,78 @@ if selected == 'Heart Disease Prediction':
 if selected == 'Parkinsons Prediction':
     st.title('Parkinsons Prediction using SVM')
     
+   # input fields for diabetes prediction
+    col1, col2 = st.columns(2)
+    
+    with col1:
+        Pregnancies = st.text_input('Number of Pregnancies')
+        Glucose = st.text_input('Glucose Level')
+        BloodPressure = st.text_input('Blood Pressure Value')
+        SkinThickness = st.text_input('Skin Thickness Value')
+        
+    with col2:
+        Insulin = st.text_input('Insulin Level')
+        BMI = st.text_input('BMI Value')
+        DiabetesPedigreeFunction = st.text_input('Diabetes Pedigree Function Value')
+        Age = st.text_input('Age of the Person')
+
+    # prediction button
+    if st.button('Diabetes Test Result'):
+        input_data = [Pregnancies, Glucose, BloodPressure, SkinThickness, Insulin, BMI, DiabetesPedigreeFunction, Age]
+        input_data_as_float = [float(i) for i in input_data]
+        input_data_reshaped = [input_data_as_float]
+        
+        prediction = diabetes_model.predict(input_data_reshaped)
+        
+        if prediction[0] == 0:
+            st.success('The person is not diabetic.')
+        else:
+            st.error('The person is diabetic.')
+
+# heart diaseaes
+if selected == 'Heart Disease Prediction':
+    st.title('Heart Disease Prediction using SVM')
+    
+    # input fields for diabetes prediction
+    col1, col2,col3 ,col4= st.columns(4)
+    
+    with col1:
+        age = st.text_input('Enter Age')
+        sex = st.text_input('Gender (0 = female, 1 = male)')
+        cp = st.text_input('Enter Chest Pain Type (cp)')
+        trestbps = st.text_input('Enter Resting Blood Pressure (trestbps)')
+        
+    with col2:
+        chol = st.text_input('Enter Cholesterol Level')
+        fbs = st.text_input('Fasting Blood Sugar (0 = false; 1 = true)')
+        restecg = st.text_input('Resting ECG Results')
+        thalach = st.text_input('Maximum Heart Rate Achieved')
+    
+    with col3:
+        exang = st.text_input('Exercise  (0 = no; 1 = yes)')
+        oldpeak = st.text_input('ST Depression Induced by Exercise')
+        slope = st.text_input('Slope of the Peak Exercise')
+        thal = st.text_input('Thal (1 = normal; 2 = fixed defect; 3 = reversible defect)')
+    
+    with col4:
+        
+        ca = st.text_input('No. of Major Vessels (0–3)')
+    # prediction button
+    if st.button('Diabetes Test Result'):
+        input_data = [age,sex,cp,trestbps,chol,fbs,restecg,thalach,exang,oldpeak,slope,ca,thal]
+        input_data_as_float = [float(i) for i in input_data]
+        input_data_reshaped = [input_data_as_float]
+        
+        prediction = heart_model.predict(input_data_reshaped)
+        if prediction[0] == 0:
+            st.success('The person does NOT have a heart disease.')
+        else:
+            st.error('The person HAS a heart disease.')
+
+# parkinsons prediction page
+if selected == 'Parkinsons Prediction':
+    st.title('Parkinsons Prediction using SVM')
+    
     # input fields for parkinsons prediction
     col1, col2 ,col3 ,col4,col5= st.columns(5)
     with col1:
@@ -107,27 +179,34 @@ if selected == 'Parkinsons Prediction':
         fhi = st.text_input('MDVP:Fhi(Hz)')
         flo = st.text_input('MDVP:Flo(Hz)')
         Jitter_percent = st.text_input('MDVP:Jitter(%)')
-    with col2:
         Jitter_Abs = st.text_input('MDVP:Jitter(Abs)')
         RAP = st.text_input('MDVP:RAP')
+    with col2:
         PPQ = st.text_input('MDVP:PPQ')
         DDP = st.text_input('Jitter:DDP')
-    with col3:
         Shimmer = st.text_input('MDVP:Shimmer')
         Shimmer_dB = st.text_input('MDVP:Shimmer(dB)')
         APQ3 = st.text_input('Shimmer:APQ3')
-        HNR = st.text_input('HNR')
-    with col4:
+    with col3:
         APQ5 = st.text_input('Shimmer:APQ5')
         APQ = st.text_input('MDVP:APQ')
         DDA = st.text_input('Shimmer:DDA')
         NHR = st.text_input('NHR')
+        HNR = st.text_input('HNR')
+    with col4:
+        RPDE = st.text_input('RPDE')
+        DFA = st.text_input('DFA')
+        spread1 = st.text_input('spread1')
+        spread2 = st.text_input('spread2')
+        D2 = st.text_input('D2')
+        PPE = st.text_input('PPE')
+
  
        
     # prediction button
     if st.button('Parkinsons Test Result'):
         input_data = [fo, fhi, flo, Jitter_percent, Jitter_Abs, RAP, PPQ, DDP,
-                      Shimmer, Shimmer_dB, APQ3, APQ5, APQ, DDA, NHR, HNR]
+                      Shimmer, Shimmer_dB, APQ3, APQ5, APQ, DDA, NHR, HNR, RPDE, DFA, spread1, spread2, D2, PPE]
         input_data_as_float = [float(i) for i in input_data]
         input_data_reshaped = [input_data_as_float]
         
